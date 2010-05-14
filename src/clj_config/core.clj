@@ -6,7 +6,7 @@
   "This function formats your config like you'd expect to see a Clojure map
   in normal code."
   [newc]
-  (.replaceAll newc ",s*(?=([^\"]*\"[^\"]*\")*[^\"]*$)" "\n"))
+  (.replaceAll (str newc) ",s*(?=([^\"]*\"[^\"]*\")*[^\"]*$)" "\n"))
 
 (defn read-config 
   "Reads the config file specified. If :as-string is true, returns the string slurped
@@ -19,7 +19,7 @@
   "Writes the data to the configuration file. If format? is true, formats the file with
   format-config."
   [new-info file & {:keys [format?] :or {format? false}}] 
-  (spit file (if format? (format-config new-info) new-info)))
+  (spit file (if format? (format-config new-info) (str new-info))))
 
 (defn get-key 
   "Get's a single key from the config file."
