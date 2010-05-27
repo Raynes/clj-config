@@ -1,5 +1,5 @@
 (ns clj-config.core
-  (:use [clojure.contrib.io :only [spit slurp*]])
+  (:use [clojure.contrib.io :only [slurp*]])
   (:import java.io.File))
 
 (defn format-config 
