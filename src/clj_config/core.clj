@@ -9,11 +9,8 @@
   (.replaceAll (str newc) ",s*(?=([^\"]*\"[^\"]*\")*[^\"]*$)" "\n"))
 
 (defn read-config 
-  "Reads the config file specified. If :as-string is true, returns the string slurped
-  from the configuration file, otherwise, returns the data read-string'd."
-  [file & {:keys [string?] :or {as-string? false}}]
-  (let [cfile (slurp file)]
-    (if string? cfile (read-string cfile))))
+  "Reads the configuration file, calling read-string on it."
+  [file] (let [cfile (slurp file)] (read-string cfile)))
 
 (defn write-config 
   "Writes the data to the configuration file. If format? is true, formats the file with
