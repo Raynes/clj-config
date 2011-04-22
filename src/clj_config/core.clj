@@ -33,3 +33,9 @@
   "Sets the value of a key in a configuration file."
   [key nval file & {:keys [format?] :or {format? false}}]
   (-> (read-config file) (assoc key nval) (write-config file)))
+
+(defn safely
+  "Sets *read-eval* to false and runs the function with the arguments passed."
+  [f & args]
+  (binding [*read-eval* false]
+    (apply f args)))
